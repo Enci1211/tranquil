@@ -1,0 +1,33 @@
+{% extends "manager/manager_home.html" %} {% block title %}Manager Edit Shift{%
+endblock %} {% block content %}
+<form
+  action="{{url_for('manager.manager_schedule_edit')}}"
+  method="POST"
+  class="u-center-text u-margin-top-medium"
+>
+  <input type="hidden" name="schedule_id" value="1" />
+  <h2>
+    You will arrange for
+    <select id="staff_id" name="staff_id">
+      {% for id, staff_name in staff%}
+      <option value="{{id}}" selected>{{staff_name}}</option>
+      {% endfor%}
+    </select>
+    to cover the
+    <select name="shift" id="shift">
+      <option value="morning">morning</option>
+      <option value="afternoon">afternoon</option>
+      <option value="evening">evening</option>
+    </select>
+    shift on
+    <select name="date" id="date">
+      {%for d in date%}
+      <option value="{{d[0].strftime('%Y-%m-%d')}}">
+        {{d[0].strftime('%Y-%m-%d')}}
+      </option>
+      {%endfor%}
+    </select>
+  </h2>
+  <button type="submit" class="btn btn--green">YES</button>
+</form>
+{% endblock%}

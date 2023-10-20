@@ -1,0 +1,118 @@
+{% extends "manager/manager_home.html" %} {% block title %}Manager View
+Customer{% endblock %} {% block content %}
+<style>
+  #searchInput {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+</style>
+
+<section class="table_container u-center-text">
+  <h2
+    class="heading-secondary u-center-text u-margin-bottom-small u-margin-top-medium"
+  >
+    All Customers
+  </h2>
+  <!------search bar-->
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="Search for customers by first or last name..."
+  />
+  <!----button showing customers with booking-->
+  <button
+    id="showBookedCustomers"
+    class="btn u-margin-bottom-small u-margin-top-medium"
+  >
+    Show Booked Customers
+  </button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Customer Firstname</th>
+        <th>Customer Lastname</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Has Booking</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for customer in customers %}
+      <tr>
+        <td>{{ customer[1] }}</td>
+        <td>{{ customer[2] }}</td>
+        <td>{{ customer[3] }}</td>
+        <td>{{ customer[4] }}</td>
+        <td>{{ customer[5] }}</td>
+        <td>{{ customer[6] }}</td>
+        <td>
+          <a
+            href="/manager/customer/profile?user_id={{customer[1]}}"
+            class="btn-text"
+            >Edit Profile</a
+          >{% if customer[6] == 'YES' %}<a
+            href="/manager/customer/booking?user_id={{customer[1]}}"
+            class="btn-text"
+            >View Booking</a
+          >
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<script>
+  const searchInput = document.getElementById("searchInput");
+  const showBookedCustomersButton = document.getElementById(
+    "showBookedCustomers"
+  );
+  const table = document.querySelector(".table");
+  const rows = table.getElementsByTagName("tr");
+
+  // Add an event listener to the "Show Booked Customers" button
+  showBookedCustomersButton.addEventListener("click", () => {
+    for (let i = 1; i < rows.length; i++) {
+      const hasBooking = rows[i]
+        .getElementsByTagName("td")[5]
+        .textContent.trim()
+        .toLowerCase();
+      if (hasBooking === "yes") {
+        rows[i].style.display = "";
+      } else {
+        rows[i].style.display = "none";
+      }
+    }
+  });
+
+  // Add an event listener to the search input for filtering by name
+  searchInput.addEventListener("input", () => {
+    const searchText = searchInput.value.toLowerCase();
+
+    for (let i = 1; i < rows.length; i++) {
+      const customerFirstName = rows[i]
+        .getElementsByTagName("td")[1]
+        .textContent.toLowerCase();
+      const customerLastName = rows[i]
+        .getElementsByTagName("td")[2]
+        .textContent.toLowerCase();
+      if (
+        customerFirstName.includes(searchText) ||
+        customerLastName.includes(searchText)
+      ) {
+        rows[i].style.display = "";
+      } else {
+        rows[i].style.display = "none";
+      }
+    }
+  });
+</script>
+
+{% endblock%}

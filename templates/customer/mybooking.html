@@ -1,0 +1,116 @@
+{% extends "customer/customer_base.html" %} {% block title %}My Booking{%
+endblock %} {% block content %}
+<section class="mybooking">
+  {% if not_available %}
+  <h2 class="u-center-text u-margin-bottom-big">
+    Sorry, the room type or the date you've chosen is not available!
+  </h2>
+  {% elif past_booking%}
+  <h2 class="u-center-text u-margin-bottom-big">
+    Check-in date cannot be in the past.
+  </h2>
+  {% elif less_than_one_day %}
+  <h2 class="u-center-text u-margin-bottom-big">
+    Sorry, the customer can't stay less than one day!
+  </h2>
+  {%elif cancelled %}
+  <h2 class="u-center-text u-margin-bottom-big">
+    Your booking has been cancelled!!
+  </h2>
+
+  {% endif %}
+  <div class="u-center-text u-margin-bottom-big u-margin-top-big">
+    {% if unpaid %}
+    <div>
+      <a href="/customer/mybooking/" class="btn">Show All Reservations</a>
+    </div>
+    <h2 class="heading-secondary u-margin-bottom-big">
+      Dear {{dbOutput[0][0]}} {{dbOutput[0][1]}}, These are your booking:
+    </h2>
+    {%else%}
+
+    <div>
+      <a href="/customer/mybooking/unpaid/" class="btn"
+        >Show Unpaid Reservations</a
+      >
+    </div>
+    <div>
+      <a href="/customer/mybooking/" class="btn">Show All Reservations</a>
+    </div>
+
+    {% endif%}
+  </div>
+
+  <div class="row">
+    {% for booking in dbOutput %}
+
+    <div
+      class="mybooking_box u-margin-bottom-small {% if booking[3] < today or booking[8] == -1%}expired-booking{% endif %}"
+    >
+      <div class="mybooking_container">
+        {% if unpaid %}
+        <img
+          src="{% if booking[2] == 'standard' %}/static/img/standard/3.jpg{% elif booking[2] == 'deluxe' %}/static/img/deluxe/3.jpg{% elif booking[2] == 'suite' %}/static/img/suite/2.jpg{% endif %}"
+          alt="{{ booking[2] }}"
+          class="mybooking_container_img"
+        />
+        {% else %}
+        <img
+          src="{% if booking[2] == 'standard' %}../../static/img/standard/3.jpg{% elif booking[2] == 'deluxe' %}../../static/img/deluxe/3.jpg{% elif booking[2] == 'suite' %}../../static/img/suite/2.jpg{% endif %}"
+          alt="{{ booking[2] }}"
+          class="mybooking_container_img"
+        />
+        {%endif%}
+        <div class="mybooking_container_details">
+          <h5 class="paragraph-secondary">{{booking[2]}}</h5>
+          <h5 class="paragraph-secondary">{{booking[3]}} - {{booking[4]}}</h5>
+          {% if (booking[3] > today )and (booking[8] != -1)%}
+          <div class="u-margin-top-big">
+            <a
+              href="/customer/mybooking/edit?reservation_id={{booking[7]}}"
+              class="btn btn--white"
+              >EDIT</a
+            >
+          </div>
+          {% endif %} {% if booking[3] > today and booking[8] != -1%}
+          <div class="u-margin-top-big">
+            <a
+              href="/customer/mybooking/cancel?reservation_id={{booking[7]}}"
+              class="btn btn--white"
+              >CANCEL</a
+            >
+          </div>
+
+          {% endif %} {%if booking[8] == -1%}
+          <h2>Cancelled</h2>
+          {% endif %} {%if booking[3] == today and booking[8] != -1%}
+          <h2>You will stay with Tranquil on today!</h2>
+          {% endif %} {%if booking[3] < today and booking[8] != -1%}
+          <h2>Completed</h2>
+          {% endif %} {% if booking[3] >= today and booking[8] == 0 %}
+          <div class="u-margin-top-big">
+            <a
+              href="/customer/pay/?reservation_id={{booking[7]}}&total_price={{booking[6]}}"
+              class="btn btn--white"
+              >PAY NOW</a
+            >
+          </div>
+          {% endif %}
+        </div>
+        <div class="mybooking_container_price">
+          <div>
+            <span class="paragraph-secondary">Room Charge</span>
+            <p>NZD {{booking[5]}}</p>
+          </div>
+          <div>
+            <span class="paragraph-secondary">Total Price</span>
+            <p>NZD {{booking[6]}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}

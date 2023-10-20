@@ -1,0 +1,210 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" href="/static/css/icon-font.css" />
+
+    <link rel="stylesheet" type="text/css" href="/static/main.css" />
+
+    <link rel="shortcut icon" type="image/png" href="/static/img/favicon.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <title>{% block title %}Tranquil{% endblock %}</title>
+  </head>
+
+  <body>
+    <header class="book_header"></header>
+
+    <section class="profile_container">
+      <div class="form-box">
+        <div class="message_box">
+          {% if exist_email %}
+          <h2 class="heading-2">
+            This email address is already in use, please use another one.
+          </h2>
+          {% elif wrong_phone %}
+          <h2 class="heading-2">Phone number must be number.</h2>
+
+          {% endif %}
+        </div>
+        <meta name="format-detection" content="date=YY/MM/DD" />
+        <!-- form for register -->
+        <form action="{{url_for('register')}}" method="POST" class="profile">
+          <table class="primary_table table-bordered table-hover">
+            <tbody>
+              <tr>
+                <td>*First Name:</td>
+                <td>
+                  <!-- first name -->
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="first_name"
+                    name="first_name"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>*Last Name:</td>
+                <td>
+                  <!-- last name -->
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="last_yname"
+                    name="last_name"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>*Your Email:</td>
+                <td>
+                  <!-- email  -->
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="123@gmail.com"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>*password:</td>
+                <td>
+                  <!-- password -->
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    minlength="6"
+                    maxlength="20"
+                    placeholder="the length should be between 6 - 20"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>*Phone Number:</td>
+                <td>
+                  <!-- phone -->
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="phone"
+                    name="phone"
+                    maxlength="10"
+                    placeholder="021000000"
+                    required
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="d-grid gap-2 d-md-flex justify-content-start">
+            <p></p>
+            <button
+              type="submit"
+              value="Submit"
+              class="u-center-text btn btn--green"
+            >
+              submit
+            </button>
+
+            <a href="/" type="button" class="u-center-text btn btn--green"
+              >Back</a
+            >
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__logo-box">
+        <img
+          src="/static/img/floor/tranquil-logos_transparent.png"
+          alt="Full logo"
+          class="footer__logo"
+        />
+      </div>
+      <div class="row">
+        <div class="col-1-of-2">
+          <div class="footer__navigation">
+            <ul class="footer__list">
+              <li class="footer__item">
+                <a href="#" class="footer__link">Company</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Contact us</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Careers</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Privacy policy</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Terms</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-1-of-2">
+          <p class="footer__copyright">
+            Built by <a href="#" class="footer__link">Enci Lyu.</a> The
+            front-end design of this website was inspired by Jonas Schmedtmann's
+            online course Advanced CSS and Sass. Copyright &copy; 2023 Hotel
+            Tranquil. All rights reserved. The content, images, and materials on
+            this website are protected by copyright law and may not be
+            reproduced, distributed, or transmitted in any form without prior
+            written permission from Hotel Tranquil. We appreciate your respect
+            for our intellectual property.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+      integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

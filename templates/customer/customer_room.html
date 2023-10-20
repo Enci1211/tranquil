@@ -1,0 +1,131 @@
+{% extends "customer/customer_home.html" %} {% block title %}Tranquil --
+customer view rooms{% endblock%} {%block content %}
+<style>
+  .extra-info {
+    display: none;
+  }
+
+  .image-container {
+    display: flex;
+  }
+
+  .image-container img {
+    display: inline-block;
+    width: 30%;
+    height: 200px;
+    border-radius: 10px;
+    margin: 5px; /* Optional: Add some margin between the images */
+  }
+</style>
+
+<section class="table_container">
+  <h2
+    class="heading-secondary u-center-text u-margin-bottom-small u-margin-top-medium"
+  >
+    All Rooms
+  </h2>
+  <table class="table">
+    <tr>
+      <th>Room Type</th>
+      <th>Price per night</th>
+      <th></th>
+    </tr>
+    {% for room in rooms %}
+    <tr>
+      <td class="heading-tertiary">{{ room[2] }}</td>
+      <td class="heading-tertiary">{{ room[5] }}NZD</td>
+      <td><button class="view-more-btn btn btn--green">View More</button></td>
+    </tr>
+    <tr class="extra-info">
+      <td colspan="3">
+        <!-- Extra information here -->
+
+        <div class="image-container">
+          <img
+            src="{% if room[2] == 'standard' %}../../static/img/standard/3.jpg{% elif room[2] == 'deluxe' %}../../static/img/deluxe/3.jpg{% elif room[2] == 'suite' %}../../static/img/suite/2.jpg{% endif %}"
+            alt="{{ room[2] }}"
+            class=""
+          />
+
+          <img
+            src="{% if room[2] == 'standard' %}../../static/img/standard/1.jpg{% elif room[2] == 'deluxe' %}../../static/img/deluxe/1.jpg{% elif room[2] == 'suite' %}../../static/img/suite/1.jpg{% endif %}"
+            alt="{{ room[2] }}"
+            class=""
+          />
+          <img
+            src="{% if room[2] == 'standard' %}../../static/img/standard/2.jpg{% elif room[2] == 'deluxe' %}../../static/img/deluxe/2.jpg{% elif room[2] == 'suite' %}../../static/img/suite/3.jpg{% endif %}"
+            alt="{{ room[2] }}"
+            class=""
+          />
+        </div>
+        <div>
+          <p class="heading-tertiary">Description: {{ room[3] }}</p>
+          <p class="heading-tertiary">Facilities: {% if room[2] == 'standard'%}
+            <ul>
+              <li>Comfortable Queen bed</li>
+              <li>Bathtubs are subject to availability</li>
+              <li>Cozy Atmosphere</li>
+              <li>Modern Design</li>
+              <li>Comfortable Bedding</li>
+              <li>High-Speed Wi-Fi</li>
+              <li>Stylish Furnishings</li>
+            </ul>
+            {% elif room[2] == 'deluxe'%}
+            <ul>
+              <li>Comfortable King bed</li>
+              <li>Comfortable Bathtubs are subject to availability</li>
+              <li>Larger working desk</li>
+              <li>Spacious Layout</li>
+              <li>Panoramic Views</li>
+              <li>Luxurious Bath</li>
+              <li>Premium Amenities</li>
+              <li>Personalized Service</li>
+            </ul>
+            {% elif room[2] == 'suite' %}
+            <ul>
+              <li>Comfortable Super King bed</li>
+              <li>Unparalleled Outdoor Scenic Bathtubs are subject to availability</li>
+              <li>Larger working desk</li>
+              <li>including complimentary all-day refreshments and evening drinks</li>
+              <li>Private Terrace</li>
+              <li>Separate Living Area</li>
+              <li>Plush Seating</li>
+              <li>In-Room Jacuzzi</li>
+              <li>Exclusive Butler Service</li>
+            </ul>
+            {% endif %}
+          </p>
+      </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</section>
+
+<script>
+  // Add an event listener to all "View More" buttons
+  const viewMoreButtons = document.querySelectorAll(".view-more-btn");
+  viewMoreButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      // Find the parent row of the button
+      const parentRow = this.parentElement.parentElement;
+
+      // Find the next row with class "extra-info"
+      const extraInfoRow = parentRow.nextElementSibling;
+
+      // Toggle the visibility of the extra information row
+      if (
+        extraInfoRow.style.display === "none" ||
+        extraInfoRow.style.display === ""
+      ) {
+        extraInfoRow.style.display = "table-row";
+        this.textContent = "Hide";
+      } else {
+        extraInfoRow.style.display = "none";
+        this.textContent = "View More";
+      }
+    });
+  });
+</script>
+
+{% endblock %}

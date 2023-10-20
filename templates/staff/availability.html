@@ -1,0 +1,78 @@
+{% extends "staff/staff_home.html" %} {% block title %}Check Availability{%
+endblock %} {% block content %}
+
+<section class="table_container">
+  <h2
+    class="heading-secondary u-center-text u-margin-bottom-small u-margin-top-medium"
+  >
+    Available Rooms from {{check_in_date}} to {{check_out_date}}
+  </h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Room Type</th>
+        <th>Description</th>
+        <th>Price per Night</th>
+        <th>Number of Available Rooms</th>
+        <th>Available Room IDs</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for room in available_rooms %}
+      <tr>
+        <td>{{ room[0] }}</td>
+        <td>{{ room[1] }}</td>
+        <td>{{ room[2] }}</td>
+        <td>{{ room[3] }}</td>
+        <td>{{ room[4] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+<script>
+  console.log("JavaScript is working!");
+  // Add an event listener for the form submission
+  document
+    .getElementById("loginForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      // Get user input data
+      const email = document.getElementById("email_input").value;
+      const password = document.getElementById("password_input").value;
+      const role = document.querySelector('input[name="role"]:checked').value;
+
+      // Create an object with the data to send to the server
+      const data = {
+        email: email,
+        password: password,
+        role: role,
+      };
+
+      // Send a POST request to the server for authentication
+      fetch("/customer/handle_login/", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.error) {
+            // Authentication failed, display an error message
+            alert("Authentication failed. Please try again.");
+          } else {
+            // Authentication successful, hide the popup or take any other action
+            // You can choose to close the popup or update the UI as needed
+            hidePopup(); // You should implement a hidePopup() function
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    });
+</script>
+
+{% endblock %}

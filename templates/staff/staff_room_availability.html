@@ -1,0 +1,139 @@
+{% extends "staff/staff_home.html" %} {% block title %}Staff View Weekly Room
+Availability{% endblock %} {% block content %}
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+  }
+  th,
+  td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  .shift {
+    font-weight: bold;
+  }
+  .schedule-cell {
+    width: 200px; /* Adjust the width as needed */
+  }
+</style>
+
+<section class="table_container">
+  <h2
+    class="heading-secondary u-center-text u-margin-bottom-small u-margin-top-medium"
+  >
+    Room Availability for this week ({{monday_date}} - {{sunday_date}})
+  </h2>
+  <div class="u-margin-bottom-small u-margin-top-medium" style="display: flex">
+    <p
+      style="
+        background-color: #df72ed;
+        color: white;
+        width: 35%;
+        padding: 10px 20px;
+        border-radius: 10px;
+        text-align: center;
+      "
+    >
+      Standard
+    </p>
+    <p
+      style="
+        background-color: #80f2d6;
+        color: white;
+        width: 35%;
+        padding: 10px 20px;
+        border-radius: 10px;
+        text-align: center;
+      "
+    >
+      Deluxe
+    </p>
+    <p
+      style="
+        background-color: #f2e780;
+        color: white;
+        width: 35%;
+        padding: 10px 20px;
+        border-radius: 10px;
+        text-align: center;
+      "
+    >
+      Suite
+    </p>
+  </div>
+  <table
+    class="class_table table-bordered table-striped table-hover u-margin-bottom-small"
+  >
+    <thead class="table_head">
+      <tr>
+        <th>Room Number</th>
+        <th>{{monday_date}} <br />Monday</th>
+        <th>{{tuesday_date}} <br />Tuesday</th>
+        <th>{{wednessday_date}} <br />Wednesday</th>
+        <th>{{thursday_date}} <br />Thursday</th>
+        <th>{{friday_date}} <br />Friday</th>
+        <th>{{saturday_date}} <br />Saturday</th>
+        <th>{{sunday_date}} <br />Sunday</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for room_id, availability in room_availability.items() %}
+      <tr>
+        <td
+          {%
+          if
+          room_id
+          in
+          [101,
+          102,
+          103]
+          %}
+          style="background-color: #df72ed"
+          {%
+          elif
+          room_id
+          in
+          [104,
+          105]
+          %}
+          style="background-color: #80f2d6"
+          {%
+          elif
+          room_id
+          in
+          [106]
+          %}
+          style="background-color: #f2e780"
+          {%
+          endif
+          %}
+        >
+          {{ room_id }}
+        </td>
+
+        <td>{% if monday_date in availability %} occupied{% endif %}</td>
+        <td>{% if tuesday_date in availability %} occupied{% endif %}</td>
+        <td>{% if wednessday_date in availability %} occupied{% endif %}</td>
+        <td>{% if thursday_date in availability %} occupied{% endif %}</td>
+        <td>{% if friday_date in availability %} occupied{% endif %}</td>
+        <td>{% if saturday_date in availability %} occupied{% endif %}</td>
+        <td>{% if sunday_date in availability %} occupied{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% if next_week%}
+  <a href="/staff/room_availability/" class="btn-text"
+    >View Room Availability of This Week</a
+  >{%else%}
+  <a href="/staff/room_availability_next_week/" class="btn-text"
+    >View Room Availability of Next Week</a
+  >{%endif%}
+</section>
+{% endblock%}

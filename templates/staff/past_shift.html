@@ -1,0 +1,64 @@
+{% extends "staff/staff_home.html" %} {% block title %}Check Schedule{% endblock
+%} {% block content %} {% if update_status %}
+<h2 class="heading-tertiary">One work shift status has been updated!</h2>
+{% endif %}
+<section class="table_container">
+  <h2
+    class="heading-secondary u-center-text u-margin-bottom-small u-margin-top-medium"
+  >
+    Past Work Schedule
+  </h2>
+  <button
+    id="showMissedShifts"
+    class="btn u-margin-bottom-small u-margin-top-medium"
+  >
+    Show Missed Shifts
+  </button>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Shift</th>
+        <th>Staff</th>
+        <th>User ID</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in schedule %}
+      <tr>
+        <td>{{ s[2] }}</td>
+        <td>{{ s[3] }}</td>
+        <td>{{ s[6] }}</td>
+        <td>{{ s[5] }}</td>
+        <td>{{ s[4] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="/staff/shift/" class="btn-text">View this Week Shift</a>
+</section>
+
+<script>
+  const showMissedShiftsButton = document.getElementById("showMissedShifts");
+  const table = document.querySelector(".table");
+  const rows = table.getElementsByTagName("tr");
+
+  // Function to handle "Show Missed Shifts" button click
+  showMissedShiftsButton.addEventListener("click", () => {
+    for (let i = 1; i < rows.length; i++) {
+      const status = rows[i]
+        .getElementsByTagName("td")[4]
+        .textContent.trim()
+        .toLowerCase();
+      if (status === "missed") {
+        rows[i].style.display = "";
+      } else {
+        rows[i].style.display = "none";
+      }
+    }
+  });
+</script>
+
+{% endblock%}

@@ -1,0 +1,46 @@
+.book_header {
+  height: 60vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.3),
+      rgba($color-primary-dark, 0.3)
+    ),
+    url(../static/img/header.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  &__container {
+    width: 70%;
+    padding: 3rem 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba($color-white, 0.6);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    &__booking {
+      padding: 3rem;
+      width: 50%;
+      margin: 1rem auto;
+    }
+  }
+}

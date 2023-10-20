@@ -1,0 +1,30 @@
+.mybooking_box {
+  background-color: $color-primary-light;
+  padding: 5rem;
+  width: auto;
+  border-radius: 10px;
+  text-align: center;
+}
+.expired-booking {
+  background-color: rgba($color-primary-light, 0.7);
+}
+.mybooking_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  &_img {
+    display: block;
+    width: 20%;
+    border-radius: 10px;
+  }
+
+  &_price {
+    p {
+      color: $color-white;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 300;
+      font-size: 3rem;
+    }
+  }
+}

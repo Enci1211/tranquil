@@ -1,0 +1,86 @@
+{% extends "manager/manager_home.html" %} {% block title %}Manager View Staff{%
+endblock %} {% block content %}
+
+<style>
+  #searchInput {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+</style>
+
+<section class="table_container">
+  <h2
+    class="heading-secondary u-center-text u-margin-bottom-small u-margin-top-medium"
+  >
+    All Staff
+  </h2>
+  <!-------search bar-->
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="Search for bookings by customer name..."
+  />
+  <table class="table">
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Staff Firstname</th>
+        <th>Staff Lastname</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Is Manager</th>
+        <th>Employment Status</th>
+        <th>Main Position</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in staff %}
+      <tr>
+        <td>{{ s[1] }}</td>
+        <td>{{ s[2] }}</td>
+        <td>{{ s[3] }}</td>
+        <td>{{ s[4] }}</td>
+        <td>{{ s[5] }}</td>
+        <td>{%if s[6] == 1%} YES {%else%} NO {% endif %}</td>
+        <td>{{ s[7] }}</td>
+        <td>{{ s[8] }}</td>
+        <td>
+          <a href="/manager/staff/profile?user_id={{s[1]}}" class="btn-text"
+            >Edit Profile</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<script>
+  const searchInput = document.getElementById("searchInput");
+  const table = document.querySelector(".table");
+  const rows = table.getElementsByTagName("tr");
+
+  // Add an event listener to the search input
+  searchInput.addEventListener("input", () => {
+    const searchText = searchInput.value.toLowerCase();
+
+    for (let i = 1; i < rows.length; i++) {
+      const staffName = `${rows[i].getElementsByTagName("td")[2].textContent} ${
+        rows[i].getElementsByTagName("td")[3].textContent
+      }`.toLowerCase();
+
+      if (staffName.includes(searchText)) {
+        rows[i].style.display = "";
+      } else {
+        rows[i].style.display = "none";
+      }
+    }
+  });
+</script>
+
+{% endblock%}

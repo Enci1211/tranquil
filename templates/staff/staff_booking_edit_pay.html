@@ -1,0 +1,16 @@
+{% extends "staff/staff_home.html" %} {% block title %}Staff Edit Booking{%
+endblock %} {% block content %}
+<form action="{{url_for('staff.staff_booking_edit_pay')}}" method="POST">
+  <input type="hidden" name="reservation_id" value="{{reservation_id}}" />
+  <input type="hidden" name="difference_price" value="{{difference_price}}" />
+  <h2>
+    Please make sure the customer has paid {{difference_price}} by
+    <select id="method" name="method">
+      <option value="cash" selected>cash</option>
+      <option value="credit card">credit card</option>
+      <option value="online payment">online payment</option>
+    </select>
+  </h2>
+  <button type="submit" class="btn btn--green">YES</button>
+</form>
+{% endblock%}

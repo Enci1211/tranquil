@@ -1,0 +1,22 @@
+{% extends "manager/manager_home.html" %} {% block title %}Update Work Schedule
+Status{% endblock %} {% block content %}
+<form
+  action="{{url_for('manager.manager_past_schedule_update_status')}}"
+  method="POST"
+>
+  {% for s in dbOutput%}
+  <input type="hidden" name="schedule_id" value="{{s[0]}}" />
+  <h2>
+    Please make sure staff {{s[6]}} has
+    <select id="status" name="status">
+      <option value="completed" selected>completed</option>
+      <option value="missed">missed</option>
+      <option value="cancelled">cancelled</option>
+    </select>
+    the shift on {{s[2]}} {{s[3]}}
+  </h2>
+  {% endfor %}
+  <button type="submit" class="btn btn--green">YES</button>
+</form>
+
+{% endblock%}

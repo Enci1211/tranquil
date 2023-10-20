@@ -1,0 +1,48 @@
+.reservation_room {
+  background-color: $color-primary-light;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+
+  &_img {
+    border-radius: 5px;
+    max-width: 80%;
+    margin: 5%;
+  }
+  &_details {
+    margin: 5%;
+    display: flex;
+    justify-content: space-between;
+
+    &_text {
+      flex-grow: 1;
+    }
+    &_price {
+      background-color: aliceblue;
+      width: 40%;
+      padding: 5%;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: end;
+
+      p {
+        font-size: 4rem;
+        font-weight: 300;
+      }
+    }
+  }
+}
+.book_room {
+  background-color: $color-primary-light;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5% 15%;
+
+  &_form {
+    background-color: $color-grey-light-1;
+    padding: 5%;
+    border-radius: 5px;
+  }
+}

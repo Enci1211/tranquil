@@ -1,0 +1,267 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" href="/static/css/icon-font.css" />
+
+    <link rel="stylesheet" type="text/css" href="/static/main.css" />
+
+    <link rel="shortcut icon" type="image/png" href="/static/img/favicon.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <title>{% block title %}Tranquil{% endblock %}</title>
+  </head>
+
+  <body>
+    <header class="book_header">
+      <div class="book_header__container">
+        <form action="{{url_for('staff.check_availability')}}" method="POST">
+          <table class="book_header__container__booking u-margin-bottom-small">
+            <tr>
+              <th><label for="check-in-date">Check-in Date:</label></th>
+              <th><label for="check-out-date">Check-out Date:</label></th>
+            </tr>
+            <tr>
+              <td>
+                <input
+                  type="text"
+                  id="check-in-date"
+                  name="check_in_date"
+                  required
+                  class="form-input flatpickr"
+                  value="{{ today }}"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  id="check-out-date"
+                  name="check_out_date"
+                  required
+                  class="form-input flatpickr"
+                  value="{{ tomorrow }}"
+                />
+              </td>
+            </tr>
+          </table>
+
+          <div class="u-center-text u-margin-bottom-small">
+            <button type="submit" class="btn btn--green">
+              Check Availability
+            </button>
+          </div>
+          <div class="u-center-text u-margin-top-small">
+            <a href="/staff/" class="btn btn--green"> Go Back Home </a>
+          </div>
+        </form>
+      </div>
+    </header>
+    {% block content %}
+    <section class="manager_navigation u-margin-bottom-big">
+      <div class="manager_navigation__nav">
+        <ul class="manager_navigation__list">
+          <li class="manager_navigation__item">
+            <a href="/staff/room/" class="manager_navigation__link"
+              ><span>01</span>Rooms</a
+            >
+          </li>
+          <li class="manager_navigation__item">
+            <a href="/staff/room_availability/" class="manager_navigation__link"
+              ><span>02</span>Weekly Room Availability</a
+            >
+          </li>
+          <li class="manager_navigation__item">
+            <a href="/staff/booking/" class="manager_navigation__link"
+              ><span>03</span>Bookings</a
+            >
+          </li>
+          <li class="manager_navigation__item">
+            <a href="/staff/customer/" class="manager_navigation__link"
+              ><span>04</span>Customers</a
+            >
+          </li>
+          <li class="manager_navigation__item">
+            <a href="/staff/profile/" class="manager_navigation__link"
+              ><span>05</span>My Profile</a
+            >
+          </li>
+          <li class="manager_navigation__item">
+            <a href="/staff/shift/" class="manager_navigation__link"
+              ><span>06</span>My shift</a
+            >
+          </li>
+          <li class="manager_navigation__item">
+            <a href="/" class="manager_navigation__link"
+              ><span>07</span>Log out</a
+            >
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    {% endblock %}
+    <section class="section-contact u-margin-bottom-big">
+      <div class="u-center-text u-margin-bottom-big">
+        <h2 class="heading-secondary">Contact Us</h2>
+      </div>
+      <div class="row">
+        <div class="col-1-of-2">
+          <h3 class="heading-secondary u-margin-bottom-small"></h3>
+
+          <p class="paragraph">
+            <strong>Tranquil</strong> <br />
+            405 Havelock Road, Singapore 169633
+          </p>
+          <p class="paragraph">
+            <strong>Tel</strong> <br />
+            (65) 6333 8898
+          </p>
+          <p class="paragraph">
+            <strong>Email</strong> <br />
+            riverfront@furama.com
+          </p>
+        </div>
+
+        <div class="col-1-of-2">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2029367.3191228781!2d145.31068008152957!3d-6.57105190734259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x68f9f806982534dd%3A0xb8b6b1113f28aff8!2sCrossroads%20Hotel!5e0!3m2!1sen!2snz!4v1695253629059!5m2!1sen!2snz"
+            width="100%"
+            height="100%"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="footer__logo-box">
+        <img
+          src="/static/img/floor/tranquil-logos_transparent.png"
+          alt="Full logo"
+          class="footer__logo"
+        />
+      </div>
+      <div class="row">
+        <div class="col-1-of-2">
+          <div class="footer__navigation">
+            <ul class="footer__list">
+              <li class="footer__item">
+                <a href="#" class="footer__link">Company</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Contact us</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Careers</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Privacy policy</a>
+              </li>
+              <li class="footer__item">
+                <a href="#" class="footer__link">Terms</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-1-of-2">
+          <p class="footer__copyright">
+            Built by <a href="#" class="footer__link">Enci Lyu.</a> The
+            front-end design of this website was inspired by Jonas Schmedtmann's
+            online course Advanced CSS and Sass. Copyright &copy; 2023 Hotel
+            Tranquil. All rights reserved. The content, images, and materials on
+            this website are protected by copyright law and may not be
+            reproduced, distributed, or transmitted in any form without prior
+            written permission from Hotel Tranquil. We appreciate your respect
+            for our intellectual property.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+      integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--- <script>
+      // fetch the count value from the supervisor_notification_count route
+      function updateNotificationCount() {
+        $.get("/student/notification/message_count/", function (data) {
+          var count = parseInt(data, 10);
+          if (count > 0) {
+            $("#count").text(count);
+          } else {
+            $("#count").text("0");
+          }
+        });
+      }
+      // update the notification count every 30 seconds
+      setInterval(updateNotificationCount, 30000);
+      // update the notification count when the dropdown button is clicked
+      $("#notification-dropdown").on("click", function () {
+        updateNotificationCount();
+      });
+
+      // date
+      const checkInInput = document.getElementById("check-in-date");
+      const checkInButton = document.getElementById("check-in-button");
+      const checkOutInput = document.getElementById("check-out-date");
+      const checkOutButton = document.getElementById("check-out-button");
+
+      const options = {
+        onSelect: (instance, date) => {
+          const formattedDate = date.toLocaleDateString();
+          instance.el.value = formattedDate;
+        },
+      };
+
+      const checkInDatepicker = new Datepicker(checkInInput, options);
+      const checkOutDatepicker = new Datepicker(checkOutInput, options);
+
+      checkInButton.addEventListener("click", () => checkInDatepicker.show());
+      checkOutButton.addEventListener("click", () => checkOutDatepicker.show());
+    </script>--->
+
+    <script>
+      flatpickr(".form-input.flatpickr", {
+        dateFormat: "Y-m-d",
+        minDate: "today",
+      });
+    </script>
+  </body>
+</html>

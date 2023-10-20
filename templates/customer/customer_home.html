@@ -1,0 +1,335 @@
+{% extends "customer/customer_base.html" %}<title>
+  {% block title %}Customer Home Page{% endblock %}
+</title>
+{% block content %}
+
+<section class="section-about">
+  {% if book_successfully %}
+  <h2 class="u-center-text u-margin-bottom-big">
+    Thank you for choosing Tranquil for your booking. A confirmation email has
+    been sent to your email!
+  </h2>
+  {% endif %} {% if booking_edited %}
+  <h2 class="u-center-text u-margin-bottom-big">
+    Your booking have been changed, Thank you for choosing Tranquil for your
+    booking. A confirmation email has been sent to your email!
+  </h2>
+  {% endif %}
+
+  <div class="u-center-text u-margin-bottom-big">
+    <h2 class="heading-secondary">Where Opulence Meets Serenity</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-1-of-2">
+      <h3 class="heading-tertiary u-margin-bottom-small">
+        Experience Timeless Elegance in Every Detail
+      </h3>
+      <p class="paragraph">
+        At Tranquil, we redefine elegance through meticulous craftsmanship. From
+        the architectural masterpiece that greets you to our thoughtfully
+        designed rooms, we offer an experience of enduring sophistication.
+      </p>
+
+      <h3 class="heading-tertiary u-margin-bottom-small">
+        Discover Your Oasis of Calm and Comfort
+      </h3>
+      <p class="paragraph">
+        Tranquil is your urban sanctuary, offering a tranquil escape in the
+        heart of the city. Sink into comfort, indulge in fine dining, and let
+        our attentive staff cater to your needs. It's the perfect retreat, where
+        serenity meets convenience.
+      </p>
+    </div>
+    <div class="col-1-of-2">
+      <div class="composition">
+        <img
+          src="/static/img/about-1.jpg"
+          alt="Photo 1"
+          class="composition__photo composition__photo--p1"
+        />
+
+        <img
+          src="/static/img/about-2.jpg"
+          alt="Photo 1"
+          class="composition__photo composition__photo--p2"
+        />
+
+        <img
+          src="/static/img/about-3.jpg"
+          alt="Photo 1"
+          class="composition__photo composition__photo--p3"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-rooms" id="section-rooms">
+  <div class="u-center-text u-margin-bottom-big">
+    <h2 class="heading-secondary">Our Rooms</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-1-of-3">
+      <div class="card">
+        <div class="card__side card__side--front">
+          <div class="card__picture card__picture--1">&nbsp;</div>
+          <h4 class="card__heading">
+            <span class="card__heading-span card__heading-span--1"
+              >Stardard</span
+            >
+          </h4>
+          <div class="card__details">
+            <ul>
+              <li>Cozy Atmosphere</li>
+              <li>Modern Design</li>
+              <li>Comfortable Bedding</li>
+              <li>High-Speed Wi-Fi</li>
+              <li>Stylish Furnishings</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card__side card__side--back card__side--back-1">
+          <div class="card__cta">
+            <div class="card__price-box">
+              <p class="card__price-only">Only</p>
+              <p class="card__price-value">$300</p>
+            </div>
+            <a href="#popup" class="btn btn--white">Book now!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-1-of-3">
+      <div class="card">
+        <div class="card__side card__side--front">
+          <div class="card__picture card__picture--2">&nbsp;</div>
+          <h4 class="card__heading">
+            <span class="card__heading-span card__heading-span--2">Deluxe</span>
+          </h4>
+          <div class="card__details">
+            <ul>
+              <li>Spacious Layout</li>
+              <li>Panoramic Views</li>
+              <li>Luxurious Bath</li>
+              <li>Premium Amenities</li>
+              <li>Personalized Service</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card__side card__side--back card__side--back-2">
+          <div class="card__cta">
+            <div class="card__price-box">
+              <p class="card__price-only">Only</p>
+              <p class="card__price-value">$500</p>
+            </div>
+            <a href="#popup" class="btn btn--white">Book now!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-1-of-3">
+      <div class="card">
+        <div class="card__side card__side--front">
+          <div class="card__picture card__picture--3">&nbsp;</div>
+          <h4 class="card__heading">
+            <span class="card__heading-span card__heading-span--3">Suite</span>
+          </h4>
+          <div class="card__details">
+            <ul>
+              <li>Private Terrace</li>
+              <li>Separate Living Area</li>
+              <li>Plush Seating</li>
+              <li>In-Room Jacuzzi</li>
+              <li>Exclusive Butler Service</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card__side card__side--back card__side--back-3">
+          <div class="card__cta">
+            <div class="card__price-box">
+              <p class="card__price-only">Only</p>
+              <p class="card__price-value">$800</p>
+            </div>
+            <a href="#popup" class="btn btn--white">Book now!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-service">
+  <div class="row icon-box">
+    <div class="icon-box__cell">
+      <i class="icon-box__icon icon-basic-anticlockwise"></i>
+      <p class="icon-box__text">Self Check-out</p>
+    </div>
+    <div class="icon-box__cell">
+      <i class="icon-box__icon icon-basic-rss"></i>
+      <p class="icon-box__text">Free WIFI</p>
+    </div>
+    <div class="icon-box__cell">
+      <i class="icon-box__icon icon-basic-signs"></i>
+      <p class="icon-box__text">Free Transportation</p>
+    </div>
+    <div class="icon-box__cell">
+      <i class="icon-box__icon icon-basic-alarm"></i>
+      <p class="icon-box__text">Moring Call</p>
+    </div>
+    <div class="icon-box__cell">
+      <i class="icon-box__icon icon-basic-cards-hearts"></i>
+      <p class="icon-box__text">Hotel Club</p>
+    </div>
+    <div class="icon-box__cell">
+      <i class="icon-box__icon icon-basic-star"></i>
+      <p class="icon-box__text">Food Delivery</p>
+    </div>
+
+    <div class="icon-box__cell">
+      <i class="icon-box__icon icon-basic-keyboard"></i>
+      <p class="icon-box__text">Work Space</p>
+    </div>
+
+    <div class="icon-box__cell">
+      <i class="icon-box__icon icon-basic-eye"></i>
+      <p class="icon-box__text">Chatbot</p>
+    </div>
+    <div class="icon-box__cell">
+      <i class="icon-box__icon icon-basic-settings"></i>
+      <p class="icon-box__text">Parking Voucher</p>
+    </div>
+    <div class="icon-box__cell">
+      <i class="icon-box__icon icon-basic-heart"></i>
+      <p class="icon-box__text">Welcom Gift</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-sliders">
+  <div class="slider">
+    <input type="radio" name="slider" id="slide1" />
+    <input type="radio" name="slider" id="slide2" />
+    <input type="radio" name="slider" id="slide3" />
+
+    <!-- Video Background -->
+
+    <div class="bg-video video-background">
+      <video class="bg-video__content" autoplay muted loop>
+        <source src="../../static/img/video.mp4" type="video/mp4" />
+        <source src="../../static/img/video.webm" type="video/webm" />
+        Your browser is not supported!
+      </video>
+    </div>
+
+    <div class="u-center-text u-margin-bottom-big">
+      <h2 class="heading-secondary">
+        Discover Tranquil: Where Our Guests Share Their Stories
+      </h2>
+    </div>
+
+    <div class="slides">
+      <!-- Slide 1 -->
+      <div class="slide slide1">
+        <!-- Your content here -->
+        <div class="row">
+          <div class="story">
+            <figure class="story__shape">
+              <img
+                src="../../static/img/nat-8.jpg"
+                alt="Person on a tour"
+                class="story__img"
+              />
+              <figcaption class="story__caption">Mary Smith</figcaption>
+            </figure>
+            <div class="story__text">
+              <h3 class="heading-tertiary u-margin-bottom-small">
+                A Blissful Retreat
+              </h3>
+              <p>
+                Tranquil exceeded all my expectations. From the moment I stepped
+                into this haven of serenity, I felt the stresses of everyday
+                life melt away. The elegant decor, the attentive staff, and the
+                peaceful ambiance created an unforgettable experience. The
+                highlight for me was the spa; the treatments were world-class,
+                and I left feeling rejuvenated. I can't wait to return to
+                Tranquil for another blissful retreat.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide slide2">
+        <!-- Your content here -->
+        <div class="row">
+          <div class="story">
+            <figure class="story__shape">
+              <img
+                src="../../static/img/nat-9.jpg"
+                alt="Person on a tour"
+                class="story__img"
+              />
+              <figcaption class="story__caption">Jack Wilson</figcaption>
+            </figure>
+            <div class="story__text">
+              <h3 class="heading-tertiary u-margin-bottom-small">
+                A Relaxing Escape
+              </h3>
+              <p>
+                My stay at Tranquil was nothing short of exceptional. The
+                attention to detail in every aspect of this hotel is truly
+                remarkable. The rooms are tastefully decorated, and the
+                amenities are top-notch. The dining experience was exquisite,
+                with a diverse menu that satisfied my culinary cravings. What
+                truly sets Tranquil apart, though, is the staff. Their warm
+                hospitality made me feel like royalty throughout my stay.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide slide3">
+        <!-- Your content here -->
+        <div class="row">
+          <div class="story">
+            <figure class="story__shape">
+              <img
+                src="../../static/img/nat-10.jpg"
+                alt="Person on a tour"
+                class="story__img"
+              />
+              <figcaption class="story__caption">Emma Johnson</figcaption>
+            </figure>
+            <div class="story__text">
+              <h3 class="heading-tertiary u-margin-bottom-small">
+                An Unforgettable Experience
+              </h3>
+              <p>
+                I can't express how much I enjoyed my time at Tranquil. From the
+                breathtaking views to the impeccable service, it was truly an
+                unforgettable experience. The attention to detail in every
+                aspect of the hotel is remarkable. Whether you're looking for
+                relaxation or adventure, Tranquil has it all.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-nav">
+      <label for="slide1"></label>
+      <label for="slide2"></label>
+      <label for="slide3"></label>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

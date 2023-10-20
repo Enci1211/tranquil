@@ -1,0 +1,91 @@
+{% extends "customer/customer_base.html" %} {% block title %}Book Room{% endblock %} {% block content %}
+
+
+
+
+  <div class="book_room" style="width: 90%; margin: 0 auto;">
+    
+    <form  action="{{url_for('customer.book_room')}}" method="POST" class="book_room_form"  style="width: 90%; margin: 0 auto;text-align: center;">
+        <input type="hidden" name="check_in" value="{{ check_in_date }}">
+        <input type="hidden" name="check_out" value="{{ check_out_date }}">
+        <input type="hidden" name="room_type" value="{{ room_type }}">
+        <input type="hidden" name="total_room_charge" value="{{ total_room_charge }}">
+        
+               
+        
+        <div class="u-margin-bottom-big">
+          <h2 class="heading-secondary">Please Confirm Your Booking Information:</h2>
+        </div>
+
+        
+      <div class="book_room_info u-margin-bottom-big">
+        <p class="heading-tertiary"><strong>HOTEL NAME:</strong> Tranquil</p>
+        <p class="heading-tertiary"><strong>ROOM TYPE:</strong> {{ room_type }}</p>
+        <p class="heading-tertiary"><strong>NUMBER OF DAYS:</strong> {{ num_of_days }}</p>
+        <p class="heading-tertiary"><strong>NUMBER OF ROOMS:</strong>1</p>
+        <p class="heading-tertiary"><strong>CHECK-IN DATE:</strong> {{ check_in_date }}</p>
+        <p class="heading-tertiary"><strong>CHECK-OUT DATE:</strong> {{ check_out_date }}</p>
+        <p class="heading-tertiary"><strong>TOTAL ROOM CHARGE:</strong>${{total_room_charge}}</p>
+      </div>
+
+      <div class="book_room_info">
+                
+        <div class="u-margin-bottom-big">
+          <h2 class="heading-secondary">Guest Information:</h2>
+        </div>
+        <p class="heading-tertiary"><strong>CUSTOMER NAME:</strong> {{customer_name}}</p>
+        <p class="heading-tertiary"><strong>CUSTOMER EMAIL:</strong> {{ email_input }}</p>
+      </div>
+     
+      <div class="book_room_extra">
+        <div class="u-margin-bottom-big u-margin-top-big">
+          <h2 class="heading-secondary">You May Also Like</h2>
+        </div>
+        <div class="book_room_extra_box">
+          <div class="book_room_extra_box-1">
+            <p class="heading-tertiary">AMERICAN BUFFET BREAKFAST PER PERSON PER DAY</p>
+            <input type="checkbox" name="service_breakfast" value="20"> Breakfast ($20)
+          </div>
+          <div class="book_room_extra_box-1">
+            <p class="heading-tertiary">GUARANTEED EARLY CHECK-IN FROM 9AM</p>
+            <input type="checkbox" name="service_earlier_checkin" value="80"> Check-in earlier ($80)
+          </div>
+          <div class="book_room_extra_box-1">
+            <p class="heading-tertiary">GUARANTEED LATE CHECK-OUT BEFORE 6PM</p>
+            <input type="checkbox" name="service_late_checkout" value="80"> Check-out later ($80)
+          </div>
+          <div class="book_room_extra_box-1">
+            <p class="heading-tertiary">Special Needs (Max 60 letters):</p>
+            <textarea name="special_needs" rows="4" cols="50" maxlength="60"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="book_room_comfirm">
+        <div class="u-margin-bottom-big ">
+          <h2 class="heading-secondary u-margin-top-big">Comments</h2>
+        </div>
+        <p class="paragraph">
+          We will forward any special information that you would like sent with your reservation. We will give priority, and fulfil within our means, requests made via this site. Please advise the hotel if you have any access needs. Please refrain from using emoticons and do not enter more than 60 characters.
+        </p>
+        <div class="book_room_comfirm_checkbox">
+          <input type="checkbox" name="comfirm" required> 
+          <label for="comfirm">I understand that by selecting this checkbox, I have read and accept the reservation terms & conditions stated on this page. I certify that I am at least 18 (21 in Bali) years of age and at least as old as the minimum check-in age of the hotel at which I am making this reservation.
+          </label>
+        </div> 
+      </div>
+
+       
+      <button type="submit" class="btn-text u-margin-top-big">Confirm and Pay Now</button>
+    
+    </form>
+  </div>
+
+
+
+
+
+
+
+    
+</section>
+{% endblock %}

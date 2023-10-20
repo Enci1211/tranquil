@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/static/main.css" />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+      integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--<link rel="stylesheet" href="css/icon-font.css">-->
+
+    <link rel="shortcut icon" type="image/png" href="/static/img/favicon.png" />
+
+    <title>{% block title %}Tranquil{% endblock %}</title>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header__text-box">
+        <h1 class="heading-primary">
+          <span class="heading-primary--main">tranquil</span>
+          <span class="heading-primary--sub">where life happens</span>
+        </h1>
+        <div>
+          {% if new_customer %}
+          <h2 class="heading-tertiary">
+            Registed Successfully! Please Login Now!
+          </h2>
+          {% endif %}
+          <h2 class="heading-tertiary">{{ not_customer }}</h2>
+          <h2 class="heading-tertiary">{{ incorrect_email }}</h2>
+          <h2 class="heading-tertiary">{{ incorrect_password }}</h2>
+        </div>
+
+        <form class="form" action="{{url_for('home')}}" method="POST">
+          <div class="form__group">
+            <input
+              type="email"
+              class="form__input"
+              placeholder="Enter your Email"
+              id="email_input"
+              name="email_input"
+              required
+            />
+          </div>
+
+          <div class="form__group">
+            <input
+              type="password"
+              class="form__input"
+              placeholder="Enter Your Password"
+              id="password_input"
+              name="password_input"
+              required
+            />
+          </div>
+
+          <div>
+            <h4 class="paragraph-secondary">I'm a/an:</h4>
+
+            <div class="form__group u-margin-bottom-medium">
+              <div class="form__radio-group">
+                <input
+                  type="radio"
+                  class="form__radio-input"
+                  id="customer"
+                  value="customer"
+                  name="role"
+                />
+                <label
+                  for="customer"
+                  class="form__radio-label paragraph-secondary"
+                >
+                  <span class="form__radio-button"></span>
+                  Customer
+                </label>
+              </div>
+
+              <div class="form__radio-group">
+                <input
+                  type="radio"
+                  class="form__radio-input"
+                  id="staff"
+                  value="staff"
+                  name="role"
+                />
+                <label
+                  for="staff"
+                  class="form__radio-label paragraph-secondary"
+                >
+                  <span class="form__radio-button"></span>
+                  Staff
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="login_btn">
+            <button
+              class="btn btn--white btn--animated u-margin-bottom-medium"
+              type="submit"
+              class="btn-2"
+            >
+              Log in
+            </button>
+          </div>
+
+          <p class="paragraph-secondary">
+            Don't have a account ?
+            <a href="/register" style="text-decoration: none; color: aquamarine"
+              >Register</a
+            >
+          </p>
+        </form>
+      </div>
+    </header>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+{% extends "manager/manager_home.html" %} {% block title %}Manager View
+Bookings{% endblock %} {% block content %}
+<section class="table_container">
+  <h2
+    class="heading-secondary u-center-text u-margin-bottom-small u-margin-top-medium"
+  >
+    The Details of reservation {{reservations[0][0]}}
+  </h2>
+  <form
+    action="{{url_for('manager.manager_customer_booking_edit')}}"
+    method="POST"
+    class="mybooking_edit profile"
+  >
+    {% if edited %}
+    <h2 class="heading-tertiary">Customer's booking has been updated!</h2>
+    {% endif %}
+    <table class="primary_table table-bordered table-hover">
+      {% for reservation in reservations %}
+      <input type="hidden" name="reservation_id" value="{{reservation[0]}}" />
+      <input type="hidden" name="room_type_old" value="{{reservation[3]}}" />
+      <input
+        type="hidden"
+        name="check_in_date_old"
+        value="{{reservation[6]}}"
+      />
+      <input
+        type="hidden"
+        name="check_out_date_old"
+        value="{{reservation[7]}}"
+      />
+      <input
+        type="hidden"
+        name="selected_services_old"
+        value="{{reservation[10]}}"
+      />
+      <input
+        type="hidden"
+        name="special_needs_old"
+        value="{{reservation[11]}}"
+      />
+
+      <tr>
+        <td>Reservation ID</td>
+        <td>{{ reservation[0] }}</td>
+      </tr>
+      <tr>
+        <td>Comfirmed</td>
+        <td>{% if reservation[1] == 1 %}YES {% else%} NO {% endif %}</td>
+      </tr>
+      <tr>
+        <td>Room Number</td>
+        <td>{{ reservation[2] }}</td>
+      </tr>
+      <tr>
+        <td>Room room_type</td>
+        <td>
+          <select id="room_type" name="room_type">
+            <option value="{{ reservation[3] }}" selected>
+              {{ reservation[3] }}
+            </option>
+            <option value="standard">standard</option>
+            <option value="deluxe">deluxe</option>
+            <option value="suite">suite</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Customer ID</td>
+        <td>{{ reservation[4] }}</td>
+      </tr>
+      <tr>
+        <td>Customer Name</td>
+        <td>{{ reservation[5] }}</td>
+      </tr>
+      <tr>
+        <td>Check In Date</td>
+        <td>
+          <input
+            type="text"
+            id="check-in-date"
+            name="check_in_date"
+            required
+            class="form-input flatpickr"
+            value="{{ reservation[6] }}"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>Check Out Date</td>
+        <td>
+          <input
+            type="text"
+            id="check-out-date"
+            name="check_out_date"
+            required
+            class="form-input flatpickr"
+            value="{{ reservation[7] }}"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>Total Room Charge</td>
+        <td>{{ reservation[8] }}</td>
+      </tr>
+      <tr>
+        <td>Total Price</td>
+        <td>{{ reservation[9] }}</td>
+      </tr>
+      <tr>
+        <td>Selected Services</td>
+        <td>
+          <input
+            type="text"
+            id="selected_services"
+            name="selected_services"
+            placeholder="{{ reservation[10] }}"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>Special Needs</td>
+        <td>
+          <input
+            type="text"
+            id="special_needs"
+            name="special_needs"
+            placeholder="{{ reservation[11] }}"
+          />
+        </td>
+      </tr>
+
+      {% endfor %}
+    </table>
+
+    <button type="submit" class="btn btn--green">Update the reservation</button>
+  </form>
+</section>
+{% endblock%}

@@ -1,0 +1,28 @@
+.icon-box {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  &__cell {
+    text-align: center;
+  }
+  &__icon {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    background-image: linear-gradient(
+      to right,
+      $color-primary-light,
+      $color-primary-dark
+    );
+    -webkit-background-clip: text;
+    color: transparent;
+
+    @include respond(tab-port) {
+      margin-bottom: 0;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-1.5rem) scale(1.03);
+  }
+}

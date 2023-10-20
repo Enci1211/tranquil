@@ -1,0 +1,5 @@
+dbuser = "sqluser"
+dbpass = "password" 
+dbhost = "localhost" 
+dbport = "3306"
+dbname = "tranquil"

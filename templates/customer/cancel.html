@@ -1,0 +1,60 @@
+{% extends "customer/customer_base.html" %} {% block title %}Cancel Booking{%
+endblock %} {% block content %}
+
+<section class="profile_container">
+  <form action="{{url_for('customer.cancel')}}" method="POST" class="profile">
+    <h2 class="u-center-text u-margin-bottom-big">
+      Are you sure you want to cancel this booking?
+    </h2>
+    <table class="primary_table table-bordered table-hover">
+      <tbody>
+        {% for a in dbOutput %}
+        <input type="hidden" name="reservation_id" value="{{a[0]}}" />
+
+        <tr>
+          <td>Check in Date</td>
+          <td>{{a[3]}}</td>
+        </tr>
+        <tr>
+          <td>Check out date</td>
+          <td>{{a[4]}}</td>
+        </tr>
+        <tr>
+          <td>Room Type</td>
+          <td>{{a[11]}}</td>
+        </tr>
+        <tr>
+          <td>Price per night</td>
+          <td>{{a[12]}}</td>
+        </tr>
+        <tr>
+          <td>Total Room Charge</td>
+          <td>{{a[5]}}</td>
+        </tr>
+        <tr>
+          <td>Selected Services</td>
+          <td>{{a[6]}}</td>
+        </tr>
+        <tr>
+          <td>Total Price</td>
+          <td>{{a[8]}}</td>
+        </tr>
+        <tr>
+          <td>Paid</td>
+          <td>{%if a[9] == 1%}Yes{%else%} No{%endif%}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="submit" class="u-center-text btn btn--green">
+      Cancelled
+    </button>
+    <a href="/customer/mybooking/" class="u-center-text btn btn--green"
+      >Back to My Booking</a
+    >
+
+    {% endfor %}
+  </form>
+</section>
+
+{% endblock %}

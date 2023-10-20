@@ -1,0 +1,72 @@
+{% extends "manager/manager_home.html" %} {% block title %}Staff Profile{%
+endblock %} {% block content %}
+<section class="profile_container">
+  <form
+    action="{{url_for('manager.manager_staff_profile')}}"
+    method="POST"
+    class="profile"
+  >
+    {% if edited %}
+    <h2 class="heading-tertiary">Staff's profile has been updated!</h2>
+
+    {% endif %}
+    <h1 class="paragraph-secondary">Staff Profile:</h1>
+    <table class="primary_table table-bordered table-hover">
+      <tbody>
+        {% for a in dbOutput %}
+        <input type="hidden" name="user_id" value="{{a[0]}}" />
+        <input type="hidden" name="staff_fname_old" value="{{a[1]}}" />
+        <input type="hidden" name="staff_lname_old" value="{{a[2]}}" />
+        <input type="hidden" name="email_old" value="{{a[3]}}" />
+        <input type="hidden" name="phone_old" value="{{a[4]}}" />
+        <tr>
+          <td>First Name</td>
+          <td>
+            <input
+              name="staff_fname"
+              value="{{staff_fname}}"
+              placeholder="{{a[1]}}"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Last Name</td>
+          <td>
+            <input
+              name="staff_lname"
+              value="{{staff_lname}}"
+              placeholder="{{a[2]}}"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>
+            <input name="email" value="{{email}}" placeholder="{{a[3]}}" />
+          </td>
+        </tr>
+        <tr>
+          <td>Phone number</td>
+          <td>
+            <input name="phone" value="{{phone}}" placeholder="{{a[4]}}" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button
+      type="submit"
+      class="u-center-text btn btn--green u-margin-bottom-small"
+    >
+      EDIT
+    </button>
+    <div>
+      <a href="/manager/staff/" class="u-center-text btn btn--green"
+        >Back to Staff</a
+      >
+    </div>
+
+    {% endfor %}
+  </form>
+</section>
+{% endblock %}

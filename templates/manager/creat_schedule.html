@@ -1,0 +1,24 @@
+{% extends "manager/manager_home.html" %} {% block title %}Manager Creat Shifts
+for Next Week{% endblock %} {% block content %}
+<form
+  action="{{url_for('manager.manager_creat_schedule')}}"
+  method="POST"
+  class="u-center-text u-margin-top-big"
+>
+  <input
+    type="hidden"
+    name="monday_date_this_week"
+    value="{{monday_date_this_week}}"
+  />
+  <input
+    type="hidden"
+    name="sunday_date_this_week"
+    value="{{sunday_date_this_week}}"
+  />
+  <h2>
+    Please make sure the shifts from {{monday_date_next_week}}(Monday) to
+    {{sunday_date_next_week}}(Sunday) will be created!
+  </h2>
+  <button type="submit" class="btn btn--green">Creat Now!</button>
+</form>
+{% endblock%}

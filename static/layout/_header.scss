@@ -1,0 +1,79 @@
+.header {
+  height: 85vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.3),
+      rgba($color-primary-dark, 0.3)
+    ),
+    url(../static/img/header.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    height: 95vh;
+  }
+
+  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+    only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+    only screen and (min-width: 125em) {
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8)
+      ),
+      url(../static/img/header.jpg);
+  }
+
+  @include respond(phone) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  }
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  &__container {
+    width: 70%;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: $color-white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    &__booking {
+      padding: 3rem;
+      width: 50%;
+      margin: 1rem auto;
+    }
+  }
+}
+
+.flatpickr {
+  background-color: #fff; /* Background color */
+  border: 1px solid #ccc; /* Border style */
+  border-radius: 4px; /* Border radius */
+  padding: 10px; /* Padding */
+}
+
+.flatpickr input[type="text"] {
+  width: 100%; /* Make the input fields full-width */
+  padding: 8px; /* Padding inside the input fields */
+}

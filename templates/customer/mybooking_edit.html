@@ -1,0 +1,94 @@
+{% extends "customer/customer_base.html" %} {% block title %}Edit My Booking{%
+endblock %} {% block content %}
+<section class="mybooking_edit_container profile_container">
+  <form
+    action="{{url_for('customer.customer_mybooking_edit')}}"
+    method="POST"
+    class="mybooking_edit profile"
+  >
+    {% if edited %}
+    <h2 class="heading-tertiary">you have updated your booking!</h2>
+    {% endif %}
+    <table class="primary_table table-bordered table-hover">
+      <tbody>
+        {% for a in dbOutput %}
+        <input type="hidden" name="reservation_id" value="{{reservation_id}}" />
+        <input type="hidden" name="room_type_old" value="{{a[1]}}" />
+        <input type="hidden" name="check_in_date_old" value="{{a[2]}}" />
+        <input type="hidden" name="check_out_date_old" value="{{a[3]}}" />
+        <input type="hidden" name="selected_services_old" value="{{a[5]}}" />
+        <input type="hidden" name="special_needs_old" value="{{a[6]}}" />
+        <tr>
+          <td>Your room type</td>
+          <td>
+            <select id="room_type" name="room_type">
+              <option value="{{a[1]}}" selected>{{a[1]}}</option>
+              <option value="standard">standard</option>
+              <option value="deluxe">deluxe</option>
+              <option value="suite">suite</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Your Check in date</td>
+          <td>
+            <input
+              type="text"
+              id="check-in-date"
+              name="check_in_date"
+              required
+              class="form-input flatpickr"
+              value="{{ a[2] }}"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Your Check out date</td>
+          <td>
+            <input
+              type="text"
+              id="check-out-date"
+              name="check_out_date"
+              required
+              class="form-input flatpickr"
+              value="{{ a[3]}}"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Services you've selected</td>
+          <td>
+            <select id="selected_services" name="selected_services" multiple>
+              <option value="service_breakfast">Breakfast ($20)</option>
+              <option value="service_earlier_checkin">
+                Check-in earlier ($80)
+              </option>
+              <option value="service_late_checkout">
+                Check-out later ($80)
+              </option>
+              <option value="0">I don't need any services</option>
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Your special needs</td>
+          <td>
+            <textarea
+              name="special_needs"
+              rows="4"
+              cols="50"
+              maxlength="60"
+              placeholder="{{a[6]}}"
+            ></textarea>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="submit" class="u-center-text btn btn--green">EDIT</button>
+
+    {% endfor %}
+  </form>
+</section>
+{% endblock %}

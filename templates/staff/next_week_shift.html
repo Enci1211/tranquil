@@ -1,0 +1,161 @@
+{% extends "staff/staff_home.html" %} {% block title %}Check Schedule{% endblock
+%} {% block content %}
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+  }
+  th,
+  td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  .shift {
+    font-weight: bold;
+  }
+  .schedule-cell {
+    width: 200px; /* Adjust the width as needed */
+  }
+</style>
+
+<section class="table_container">
+  <h2
+    class="heading-secondary u-center-text u-margin-bottom-small u-margin-top-medium"
+  >
+    Work Schedule for this week ({{monday_date}} - {{sunday_date}})
+  </h2>
+  <table
+    class="class_table table-bordered table-striped table-hover u-margin-bottom-small"
+  >
+    <thead class="table_head">
+      <tr>
+        <th>Time</th>
+        <th>{{monday_date_next_week}} <br />Monday</th>
+        <th>{{tuesday_date_next_week}} <br />Tuesday</th>
+        <th>{{wednessday_date_next_week}} <br />Wednesday</th>
+        <th>{{thursday_date_next_week}} <br />Thursday</th>
+        <th>{{friday_date_next_week}} <br />Friday</th>
+        <th>{{saturday_date_next_week}} <br />Saturday</th>
+        <th>{{sunday_date_next_week}} <br />Sunday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Morning -->
+      <tr>
+        <td class="shift">Morning</td>
+
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'morning' and a[2] ==
+          monday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'morning' and a[2] ==
+          tuesday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'morning' and a[2] ==
+          wednessday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'morning' and a[2] ==
+          thursday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'morning' and a[2] ==
+          friday_date_next_week%}{{ a[6] }} {% endif %} {% endfor %}
+        </td>
+
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'morning' and a[2] ==
+          saturday_date_next_week%}{{ a[6] }} {% endif %} {% endfor %}
+        </td>
+
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'morning' and a[2] ==
+          sunday_date_next_week%}{{ a[6] }} {% endif %} {% endfor %}
+        </td>
+      </tr>
+
+      <!-- Afternoon -->
+      <tr>
+        <td class="shift">Afternoon</td>
+
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'afternoon' and a[2] ==
+          monday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'afternoon' and a[2] ==
+          tuesday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'afternoon' and a[2] ==
+          wednessday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'afternoon' and a[2] ==
+          thursday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'afternoon' and a[2] ==
+          friday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'afternoon' and a[2] ==
+          saturday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'afternoon' and a[2] ==
+          sunday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+      </tr>
+
+      <!-- Evening -->
+      <tr>
+        <td class="shift">Evening</td>
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'evening' and a[2] ==
+          monday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'evening' and a[2] ==
+          tuesday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'evening' and a[2] ==
+          wednessday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'evening' and a[2] ==
+          thursday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'evening' and a[2] ==
+          friday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'evening' and a[2] ==
+          saturday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+        <td class="schedule-cell">
+          {% for a in dbOutput %} {% if a[3] == 'evening' and a[2] ==
+          sunday_date_next_week%}{{ a[6] }}{% endif %} {% endfor %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="/staff/past_shift/" class="btn-text">View Past Shift</a>
+  <a href="/staff/shift/" class="btn-text">View This Week Shift</a>
+</section>
+
+{% endblock%}

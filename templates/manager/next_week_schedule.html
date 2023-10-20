@@ -1,0 +1,87 @@
+{% extends "manager/manager_home.html" %} {% block title %}Check Schedule{%
+endblock %} {% block content %}
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+  }
+  th,
+  td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  .shift {
+    font-weight: bold;
+  }
+  .schedule-cell {
+    width: 200px; /* Adjust the width as needed */
+  }
+</style>
+{%if dbOutput%}
+<section class="table_container">
+  <h2
+    class="heading-secondary u-center-text u-margin-bottom-small u-margin-top-medium"
+  >
+    Work Schedule for next week ({{monday_date_next_week}} -
+    {{sunday_date_next_week}})
+  </h2>
+  <table
+    class="class_table table-bordered table-striped table-hover u-margin-bottom-small"
+  >
+    <thead class="table_head">
+      <tr>
+        <th>Time</th>
+        <th>{{monday_date_next_week}} <br />Monday</th>
+        <th>{{tuesday_date_next_week}} <br />Tuesday</th>
+        <th>{{wednessday_date_next_week}} <br />Wednesday</th>
+        <th>{{thursday_date_next_week}} <br />Thursday</th>
+        <th>{{friday_date_next_week}} <br />Friday</th>
+        <th>{{saturday_date_next_week}} <br />Saturday</th>
+        <th>{{sunday_date_next_week}} <br />Sunday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-------------------morning-->
+
+      <tr>
+        <td class="shift">Morning</td>
+        {% for a in dbOutput %} {% if a[3] == 'morning' %}
+        <td class="schedule-cell">{{ a[6] }}</td>
+        {% endif %} {% endfor %}
+      </tr>
+
+      <!-------------------afternoon-->
+      <tr>
+        <td class="shift">Afternoon</td>
+        {% for a in dbOutput %} {% if a[3] == 'afternoon' %}
+        <td class="schedule-cell">{{ a[6] }}</td>
+        {% endif %} {% endfor %}
+      </tr>
+
+      <!-------------------evening-->
+      <tr>
+        <td class="shift">Evening</td>
+        {% for a in dbOutput %} {% if a[3] == 'evening' %}
+        <td class="schedule-cell">{{ a[6] }}</td>
+        {% endif %} {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="/manager/schedule/edit/" class="btn-text">Edit Shift</a>
+  <a href="/manager/schedule/" class="btn-text">View this Week Shift</a>
+  <a href="/manager/past_schedule/" class="btn-text">View Past Shift</a>
+</section>
+{% else%}
+<div class="u-center-text u-margin-top-big">
+  <h2 class="heading-tertiary">
+    Shifts for the next week do not exist. Would you like to create them?
+  </h2>
+  <a href="/manager/creat_schedule/" class="btn btn--green">YES</a>
+</div>
+{% endif %} {% endblock%}

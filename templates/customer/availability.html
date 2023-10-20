@@ -1,0 +1,217 @@
+{% extends "customer/customer_base.html" %} {% block title %}Check
+Availability{% endblock %} {% block content %}
+
+<section class="reservation">
+  <div class="u-center-text u-margin-bottom-big u-margin-top-big">
+    <h2 class="heading-secondary">Make a Reservation</h2>
+  </div>
+  <div class="row">
+    {% for room in available_rooms %}
+    <div class="reservation_room">
+      <img
+        src="{% if room[0] == 'standard' %}../../static/img/standard/3.jpg{% elif room[0] == 'deluxe' %}../../static/img/deluxe/3.jpg{% elif room[0] == 'suite' %}../../static/img/suite/2.jpg{% endif %}"
+        alt="{{ room[0] }}"
+        class="reservation_room_img"
+      />
+      <div class="reservation_room_details">
+        <ul class="reservation_room_details_text paragraph-secondary">
+          <li>
+            {% if room[0] == 'standard' %}Comfortable Queen bed {% elif room[0]
+            == 'deluxe' %} Comfortable King bed {% elif room[0] == 'suite' %}
+            Comfortable Super King bed{% endif %}
+          </li>
+          <li>Free WIFI and Dedicated USB charging ports</li>
+          <li>
+            {% if room[0] == 'standard' %}Bathtubs are subject to availability
+            {% elif room[0] == 'deluxe' %} Comfortable Bathtubs are subject to
+            availability {% elif room[0] == 'suite' %} Unparalleled Outdoor
+            Scenic Bathtubs are subject to availability{% endif %}
+          </li>
+          {% if room[0] == 'deluxe' or room[0] == 'suite'%}
+          <li>Larger working desk</li>
+          {% endif %} {% if room[0] == 'suite'%}
+          <li>
+            including complimentary all-day refreshments and evening drinks
+          </li>
+          {% endif %}
+        </ul>
+        <div class="reservation_room_details_price">
+          <span>NZD</span>
+          <p>
+            {% if room[0] == 'standard' %} 300 {% elif room[0] == 'deluxe' %}
+            500 {% elif room[0] == 'suite' %} 800{% endif %}
+          </p>
+          <a
+            href="/customer/book_room?room_type={{room[0]}}&price={{room[2]}}&check_in={{check_in_date}}&check_out={{check_out_date}}"
+            class="btn-text"
+            >Book Now &rarr;</a
+          >
+          <div>
+            <a href="#popup" class="btn-text">Login to Book!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<div class="popup" id="popup">
+  <div class="popup__content">
+    <header class="header">
+      <div class="header__text-box">
+        <h1 class="heading-primary">
+          <span class="heading-primary--main">tranquil</span>
+          <span class="heading-primary--sub">where life happens</span>
+        </h1>
+        <div>
+          {% if new_customer %}
+          <h2 class="heading-tertiary">
+            Registed Successfully! Please Login Now!
+          </h2>
+          {% endif %}
+          <h2 class="heading-tertiary">{{ not_customer }}</h2>
+          <h2 class="heading-tertiary">{{ incorrect_email }}</h2>
+          <h2 class="heading-tertiary">{{ incorrect_password }}</h2>
+        </div>
+
+        <form
+          class="form"
+          id="loginForm"
+          action="{{ url_for('customer.handle_login') }}"
+          method="POST"
+        >
+          <input type="hidden" name="check_in" value="{{ check_in_date }}" />
+          <input type="hidden" name="check_out" value="{{ check_out_date }}" />
+          <input type="hidden" name="room_type" value="{{ room_type }}" />
+          <input
+            type="hidden"
+            name="total_room_charge"
+            value="{{ total_room_charge }}"
+          />
+          <div class="form__group">
+            <input
+              type="email"
+              class="form__input"
+              placeholder="Enter your Email"
+              id="email_input"
+              name="email_input"
+              required
+            />
+          </div>
+
+          <div class="form__group">
+            <input
+              type="password"
+              class="form__input"
+              placeholder="Enter Your Password"
+              id="password_input"
+              name="password_input"
+              required
+            />
+          </div>
+
+          <div>
+            <h4 class="paragraph-secondary">I'm a/an:</h4>
+
+            <div class="form__group u-margin-bottom-medium">
+              <div class="form__radio-group">
+                <input
+                  type="radio"
+                  class="form__radio-input"
+                  id="customer"
+                  value="customer"
+                  name="role"
+                />
+                <label
+                  for="customer"
+                  class="form__radio-label paragraph-secondary"
+                >
+                  <span class="form__radio-button"></span>
+                  Customer
+                </label>
+              </div>
+
+              <div class="form__radio-group">
+                <input
+                  type="radio"
+                  class="form__radio-input"
+                  id="staff"
+                  value="staff"
+                  name="role"
+                />
+                <label
+                  for="staff"
+                  class="form__radio-label paragraph-secondary"
+                >
+                  <span class="form__radio-button"></span>
+                  Staff
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="login_btn">
+            <button
+              class="btn btn--white btn--animated"
+              type="submit"
+              class="btn-2"
+            >
+              Log in
+            </button>
+          </div>
+
+          <p class="paragraph-secondary">
+            Don't have a account ?
+            <a href="/register">Register</a>
+          </p>
+        </form>
+      </div>
+    </header>
+  </div>
+</div>
+<script>
+  console.log("JavaScript is working!");
+  // Add an event listener for the form submission
+  document
+    .getElementById("loginForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      // Get user input data
+      const email = document.getElementById("email_input").value;
+      const password = document.getElementById("password_input").value;
+      const role = document.querySelector('input[name="role"]:checked').value;
+
+      // Create an object with the data to send to the server
+      const data = {
+        email: email,
+        password: password,
+        role: role,
+      };
+
+      // Send a POST request to the server for authentication
+      fetch("/customer/handle_login/", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.error) {
+            // Authentication failed, display an error message
+            alert("Authentication failed. Please try again.");
+          } else {
+            // Authentication successful, hide the popup or take any other action
+            // You can choose to close the popup or update the UI as needed
+            hidePopup(); // You should implement a hidePopup() function
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    });
+</script>
+
+{% endblock %}

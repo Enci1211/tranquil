@@ -1,0 +1,32 @@
+{% extends "staff/staff_home.html" %} {% block title %}Check Availability{%
+endblock %} {% block content %}
+<section class="table_container">
+  <h2
+    class="heading-secondary u-center-text u-margin-bottom-small u-margin-top-medium"
+  >
+    All Rooms
+  </h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Room ID</th>
+        <th>Room Number</th>
+        <th>Room Type</th>
+        <th>Description</th>
+        <th>Price per Night</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for room in rooms %}
+      <tr>
+        <td>{{ room[0] }}</td>
+        <td>{{ room[1] }}</td>
+        <td>{{ room[2] }}</td>
+        <td>{{ room[3] }}</td>
+        <td>{{ room[5] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock%}

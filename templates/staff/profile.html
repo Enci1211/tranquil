@@ -1,0 +1,57 @@
+{% extends "staff/staff_home.html" %} {% block title %}Staff Profile{% endblock
+%} {% block content %}
+<section class="profile_container">
+  <form
+    action="{{url_for('staff.staff_profile')}}"
+    method="POST"
+    class="profile"
+  >
+    {% if edited %}
+    <h2 class="heading-tertiary">you have updated your profile!</h2>
+
+    {% endif %}
+    <h1 class="paragraph-secondary">My Profile:</h1>
+    <table class="primary_table table-bordered table-hover">
+      <tbody>
+        {% for a in dbOutput %}
+        <input type="hidden" name="user_id" value="{{a[0]}}" />
+        <input type="hidden" name="phone_old" value="{{a[4]}}" />
+        <tr>
+          <td>First Name</td>
+          <td>{{a[1]}}</td>
+        </tr>
+        <tr>
+          <td>Last Name</td>
+          <td>{{a[2]}}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>{{a[3]}}</td>
+        </tr>
+        <tr>
+          <td>Phone number</td>
+          <td>
+            <input name="phone" value="{{phone}}" placeholder="{{a[4]}}" />
+          </td>
+        </tr>
+        <tr>
+          <td>Is Manager</td>
+          <td>{% if a[5] == 0 %}No{% else %}Yes{%endif%}</td>
+        </tr>
+        <tr>
+          <td>Employment Status</td>
+          <td>{{a[6]}}</td>
+        </tr>
+        <tr>
+          <td>Main Postion</td>
+          <td>{{a[7]}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="submit" class="u-center-text btn btn--green">EDIT</button>
+
+    {% endfor %}
+  </form>
+</section>
+{% endblock %}
